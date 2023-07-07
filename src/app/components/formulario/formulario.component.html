@@ -1,31 +1,33 @@
-<form class="row g-3">
+<form [formGroup]="userModel" class="row g-3">
     <div class="col-md-6">
       <label for="inputEmail4" class="form-label">Email</label>
-      <input type="email" class="form-control" id="inputEmail4">
+      <input formControlName="email" type="email" class="form-control" id="inputEmail4">
     </div>
     <div class="col-md-6">
       <label for="inputPassword4" class="form-label">Password</label>
-      <input type="password" class="form-control" id="inputPassword4">
+      <input formControlName="password" type="password" class="form-control" [class.is-invalid]="" id="inputPassword4">
+      <div class="invalid-feedback">El campo es requerido 2,a..,#$</div>
     </div>
+    
     <div class="col-md-6">
       <label for="inputPassword5" class="form-label">Confirm Password</label>
-      <input type="password" class="form-control" id="inputPassword5">
+      <input formControlName="password2" type="password2" class="form-control" id="inputPassword5">
     </div>
     <div class="col-12">
       <label for="inputAddress" class="form-label">Address street</label>
-      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+      <input formControlName="address" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
     </div>
     <div class="col-12">
       <label for="inputAddress2" class="form-label">Apartment</label>
-      <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+      <input formControlName="address2" type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
     </div>
     <div class="col-md-6">
       <label for="inputCity" class="form-label">City</label>
-      <input type="text" class="form-control" id="inputCity">
+      <input formControlName="city" type="text" class="form-control" id="inputCity">
     </div>
     <div class="col-md-4">
       <label for="inputState" class="form-label">State</label>
-      <select id="inputState" class="form-select">
+      <select formControlName="selected"  id="inputState" class="form-select">
         <option selected>Choose...</option>
         <option>Buenos Aires</option>
         <option>Corrientes</option>
@@ -43,10 +45,14 @@
     </div>
     <div class="col-md-2">
       <label for="inputZip" class="form-label">Zip</label>
-      <input type="text" class="form-control" id="inputZip">
+      <input formControlName="zip" type="text" class="form-control" id="inputZip">
     </div>
     
     <div class="col-12">
       <button type="submit" class="btn btn-primary">Sign in</button>
     </div>
   </form>
+  <div class="col-4">
+    <h5>Valor</h5>
+     <pre >{{userModel.value|json}}</pre> 
+  </div>
