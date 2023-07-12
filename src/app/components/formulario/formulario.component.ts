@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 
 interface UserModel {
   name: FormControl<string | null>;
   lastName: FormControl<string | null>;
   email: FormControl<string | null>;
-  password: FormControl<string | any | null>;
-  password2: FormControl<string | any | null>;
+  password: FormControl<string | null>;
+  password2: FormControl<string | null>;
   address: FormControl<string | null>;
   address2: FormControl<string | null>;
   city: FormControl<string | null>;
@@ -14,38 +14,39 @@ interface UserModel {
   zip: FormControl<string | null>;
 }
 
+
 @Component({
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.css']
 })
 export class FormularioComponent {
-  userModel: FormGroup<UserModel>;
+  userModel: FormGroup;
 
   constructor(private fb: FormBuilder) {
-    this.userModel = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
-      lastName: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*\d{1,3})(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
-      password2: ['', [Validators.required]],
-      address: ['', Validators.required],
-      address2: ['', Validators.required],
-      city: ['', Validators.required],
-      selected: ['', Validators.required],
-      zip: ['', Validators.required]
+    this.userModel = this.fb.group<UserModel>({
+      name: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*\d{1,3})(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]),
+      password2: new FormControl('', [Validators.required]),
+      address: new FormControl('', Validators.required),
+      address2: new FormControl('', Validators.required),
+      city: new FormControl('', Validators.required),
+      selected: new FormControl('', Validators.required),
+      zip: new FormControl('', Validators.required)
     }, { validators: this.passwordMatchValidator });
   }
 
-  passwordMatchValidator(group: FormGroup): {[key: string]: any} | null {
-    const password = group.get('password').value;
-    const password2 = group.get('password2').value;
-  
+  passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
+    const password = control.get('password')?.value;
+    const password2 = control.get('password2')?.value;
+
     if (password !== password2) {
-      group.get('password2').setErrors({ passwordMismatch: true });
+      control.get('password2')?.setErrors({ passwordMismatch: true });
       return { passwordMismatch: true };
     } else {
-      group.get('password2').setErrors(null);
+       control.get('password2')?.setErrors(null);
       return null;
     }
   }

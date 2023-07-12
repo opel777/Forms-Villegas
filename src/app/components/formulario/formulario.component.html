@@ -3,54 +3,54 @@
     <div class="col-md-6">
       <label for="inputEmail4" class="form-label">Nombre</label>
       <input formControlName="name" type="text" class="form-control" id="inputEmail4">
-      <div *ngIf="userModel.get('name')hasErrors(required) && userModel.get('name').touched" class="invalid-feedback">El nombre es requerido.</div>
-      <div *ngIf="userModel.get('name')hasErrors(minlength) && userModel.get('name').touched" class="invalid-feedback">El nombre debe tener al menos 2 caracteres.</div>
+      <div *ngIf="userModel.get('name')?.hasError('required') && userModel.get('name')?.touched" class="invalid-feedback">El nombre es requerido.</div>
+      <div *ngIf="userModel.get('name')?.hasError('minlength') && userModel.get('name')?.touched" class="invalid-feedback">El nombre debe tener al menos 2 caracteres.</div>
     </div>
   
     <div class="col-md-6">
       <label for="inputEmail4" class="form-label">Apellido</label>
       <input formControlName="lastName" type="text" class="form-control" id="inputEmail4">
-      <div *ngIf="userModel.get('lastName')hasErrors(required) && userModel.get('lastName').touched" class="invalid-feedback">El apellido es requerido.</div>
-      <div *ngIf="userModel.get('lastName')hasErrors(minlength) && userModel.get('lastName').touched" class="invalid-feedback">El apellido debe tener al menos 2 caracteres.</div>
+      <div *ngIf="userModel.get('lastName')?.hasError('required') && userModel.get('lastName')?.touched" class="invalid-feedback">El apellido es requerido.</div>
+      <div *ngIf="userModel.get('lastName')?.hasError('minlength') && userModel.get('lastName')?.touched" class="invalid-feedback">El apellido debe tener al menos 2 caracteres.</div>
     </div>
   
     <div class="col-md-6">
       <label for="inputEmail4" class="form-label">Email</label>
       <input formControlName="email" type="email" class="form-control" id="inputEmail4">
-      <div *ngIf="userModel.get('email')hssErrors(required) && userModel.get('email').touched" class="invalid-feedback">El email es requerido.</div>
-      <div *ngIf="userModel.get('email')hasErrors(email) && userModel.get('email').touched" class="invalid-feedback">El email debe tener un formato válido.</div>
+      <div *ngIf="userModel.get('email')?.hasError('required') && userModel.get('email')?.touched" class="invalid-feedback">El email es requerido.</div>
+      <div *ngIf="userModel.get('email')?.hasError('pattern') && userModel.get('email')?.touched" class="invalid-feedback">El email debe tener un formato válido.</div>
     </div>
   
     <div class="col-md-6">
       <label for="inputPassword4" class="form-label">Password</label>
       <input formControlName="password" type="password" class="form-control" id="inputPassword4">
-      <div *ngIf="userModel.get('password')hasErrors(required) && userModel.get('password').touched" class="invalid-feedback">La contraseña es requerida.</div>
-      <div *ngIf="userModel.get('password')hasErrors(pattern) && userModel.get('password').touched" class="invalid-feedback">La contraseña debe tener al menos 8 caracteres, 1 mayúscula, 1 número y 1 carácter especial.</div>
+      <div *ngIf="userModel.get('password')?.hasError('required') && userModel.get('password')?.touched" class="invalid-feedback">La contraseña es requerida.</div>
+      <div *ngIf="userModel.get('password')?.hasError('pattern') && userModel.get('password')?.touched" class="invalid-feedback">La contraseña debe tener al menos 8 caracteres, 1 mayúscula, 1 número y 1 carácter especial.</div>
     </div>
   
     <div class="col-md-6">
       <label for="inputPassword5" class="form-label">Confirm Password</label>
       <input formControlName="password2" type="password" class="form-control" id="inputPassword5">
-      <div *ngIf="userModel.get('password2')hasErrors(required)&& userModel.get('password2').touched" class="invalid-feedback">La confirmación de contraseña es requerida.</div>
-      <div *ngIf="userModel.get('password2')hasErrors(passwordMismatch) && userModel.get('password2').touched" class="invalid-feedback">Las contraseñas no coinciden.</div>
+      <div *ngIf="userModel.get('password2')?.hasError('required')&& userModel.get('password2')?.touched" class="invalid-feedback">La confirmación de contraseña es requerida.</div>
+      <div *ngIf="userModel.get('password2')?.hasError('passwordMismatch') && userModel.get('password2')?.touched" class="invalid-feedback">Las contraseñas no coinciden.</div>
     </div>
   
     <div class="col-12">
       <label for="inputAddress" class="form-label">Dirección</label>
       <input formControlName="address" type="text" class="form-control" id="inputAddress">
-      <div *ngIf="userModel.get('address')hasError(required) && userModel.get('address').touched" class="invalid-feedback">La dirección es requerida.</div>
+      <div *ngIf="userModel.get('address')?.hasError('required') && userModel.get('address')?.touched" class="invalid-feedback">La dirección es requerida.</div>
     </div>
   
     <div class="col-12">
       <label for="inputAddress2" class="form-label">Dirección 2</label>
       <input formControlName="address2" type="text" class="form-control" id="inputAddress2">
-      <div *ngIf="userModel.get('address2')hasError(required) && userModel.get('address2').touched" class="invalid-feedback">La dirección 2 es requerida.</div>
+      <div *ngIf="userModel.get('address2')?.hasError('required') && userModel.get('address2')?.touched" class="invalid-feedback">La dirección 2 es requerida.</div>
     </div>
   
     <div class="col-md-6">
       <label for="inputCity" class="form-label">Ciudad</label>
       <input formControlName="city" type="text" class="form-control" id="inputCity">
-      <div *ngIf="userModel.get('city')hasError(required) && userModel.get('city').touched" class="invalid-feedback">La ciudad es requerida.</div>
+      <div *ngIf="userModel.get('city')?.hasError('required') && userModel.get('city')?.touched" class="invalid-feedback">La ciudad es requerida.</div>
     </div>
   
     <div class="col-md-4">
@@ -70,13 +70,13 @@
         <option value="La Rioja">La Rioja</option>
         <option value="Mendoza">Mendoza</option>
       </select>
-      <div *ngIf="userModel.get('selected')hasError(required) && userModel.get('selected').touched" class="invalid-feedback">Debe seleccionar una provincia.</div>
+      <div *ngIf="userModel.get('selected')?.hasError('required') && userModel.get('selected')?.touched" class="invalid-feedback">Debe seleccionar una provincia.</div>
     </div>
   
     <div class="col-md-2">
       <label for="inputZip" class="form-label">Código Postal</label>
       <input formControlName="zip" type="text" class="form-control" id="inputZip">
-      <div *ngIf="userModel.get('zip')haserrors('required') && userModel.get('zip').touched" class="invalid-feedback">El código postal es requerido.</div>
+      <div *ngIf="userModel.get('zip')?.hasError('required') && userModel.get('zip')?.touched" class="invalid-feedback">El código postal es requerido.</div>
     </div>
   
     <div class="col-12">
